@@ -21,7 +21,7 @@ resource "aws_autoscaling_group" "workers_launch_template" {
     launch_template {
       launch_template_specification {
         launch_template_id = "${element(aws_launch_template.workers_launch_template.*.id, count.index)}"
-        version            = "$Latest"
+        version            = "${element(aws_launch_template.workers_launch_template.*.latest_version, count.index)}"
       }
 
       override {
